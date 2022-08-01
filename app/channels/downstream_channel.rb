@@ -6,6 +6,6 @@ class DownstreamChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
-    # Any cleanup needed when channel is unsubscribed
+    stop_stream_from 'DataPoint'
   end
 end

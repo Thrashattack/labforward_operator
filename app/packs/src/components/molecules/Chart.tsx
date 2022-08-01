@@ -32,7 +32,7 @@ const Chart = ({ channel, device }: ChartProps): ReactElement => {
     (value: number | number[]): void => {
       if (value > sampleRate) setSampleRate(sampleRate + STEP);
       if (value < sampleRate)
-        setSampleRate(sampleRate - STEP > 1 ? sampleRate - STEP : 1);
+        setSampleRate(sampleRate - STEP >= 1 ? sampleRate - STEP : 1);
     },
     [sampleRate]
   );

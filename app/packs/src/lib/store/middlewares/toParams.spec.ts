@@ -1,4 +1,4 @@
-import toParams from './toParams';
+import toParams from 'lib/store/middlewares/toParams';
 
 describe('toParams', () => {
   it('support simple value', async () => {

@@ -16,14 +16,16 @@
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import 'channels';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Rails from '@rails/ujs';
+import ReactDOM from 'react-dom/client';
 
 import Routes from 'routes';
 
 Rails.start();
 
-ReactDOM.render(<Routes />, document.getElementById('react-root'));
+const container = document.getElementById('react-root') as HTMLElement;
+const root = ReactDOM.createRoot(container);
+
+root.render(<Routes />);

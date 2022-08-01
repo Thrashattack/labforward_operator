@@ -16,7 +16,11 @@ describe('middleware', () => {
 
   it('calls fetch when action is FETCH REQUESTED', () => {
     const next = jest.fn();
-    const fetchMock = mockFetch();
+    const fetchMock = mockFetch({
+      json() {
+        return { id: 1 };
+      },
+    });
     const action = {
       type: 'API_FETCH_REQUESTED',
       payload: {

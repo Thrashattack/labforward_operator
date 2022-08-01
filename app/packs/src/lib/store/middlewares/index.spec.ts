@@ -4,32 +4,33 @@ import toParams from './toParams';
 import middleware from '.';
 import store from '..';
 
+store.dispatch = jest.fn();
+const nextMock = jest.fn();
+const fetchMock = mockFetch({
+  json() {
+    return { id: 1 };
+  },
+});
+
 describe('middleware', () => {
   it('returns next action', () => {
-    const next = jest.fn();
     const action = { type: 'DUMMY' };
 
-    middleware(store)(next)(action);
+    middleware(store)(nextMock)(action);
 
-    expect(next).toHaveBeenCalledWith(action);
+    expect(nextMock).toHaveBeenCalledWith(action);
   });
 
   it('calls fetch when action is FETCH REQUESTED', () => {
-    const next = jest.fn();
-    const fetchMock = mockFetch({
-      json() {
-        return { id: 1 };
-      },
-    });
     const action = {
       type: 'API_FETCH_REQUESTED',
       payload: {
         model: 'devices',
-        params: {},
+        params: { devices: [{ id: 1 }] },
       },
     };
 
-    middleware(store)(next)(action);
+    middleware(store)(nextMock)(action);
 
     expect(fetchMock).toHaveBeenCalledWith(
       `/api/${action.payload.model}.json?${toParams(action.payload.params)}`,

@@ -64,6 +64,7 @@
     - 93% function coverage
 
 - [] Next Steps
+  - [] Add GraphQL for clever data fetching and conventional caching and documentation
   - [] Historical Dashboard (with downsampling) 
   - [] Implementation of Repository layer (backend)
   - [] Add component library (Material, Chakra) and storybook (frontend)
